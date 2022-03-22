@@ -1,0 +1,31 @@
+$input-width: 200px;
+$input-height: 30px;
+$btn-width: 100px;
+$btn-height: 30px;
+$btn-background: #fcd535;
+
+@mixin radius {
+    border-radius: 5px;
+}
+
+.ticker-input {
+    &__input {
+        margin-bottom: 5px;
+        width: $input-width;
+        height: $input-height;
+        @include radius;
+    }
+
+    &__add-btn {
+        width: $btn-width;
+        height: $btn-height;
+        border: 2px solid black;
+        background: $btn-background;
+        @include radius;
+        cursor: pointer;
+
+        &:hover {
+            background: orange;
+        }
+    }
+}

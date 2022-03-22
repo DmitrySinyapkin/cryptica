@@ -1,0 +1,46 @@
+$header-color: #f2f2f2;
+
+header {
+    padding: 20px;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    border-bottom: 1px solid black;
+    box-shadow: 5px 5px 10px black;;
+
+    .header__text {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: large;
+        color: #fcd535;
+        text-shadow: 
+            -0   -2px 3px #000000,
+            0   -2px 3px #000000,
+            -0    2px 3px #000000,
+            0    2px 3px #000000,
+            -2px -0   3px #000000,
+            2px -0   3px #000000,
+            -2px  0   3px #000000,
+            2px  0   3px #000000,
+            -1px -2px 3px #000000,
+            1px -2px 3px #000000,
+            -1px  2px 3px #000000,
+            1px  2px 3px #000000,
+            -2px -1px 3px #000000,
+            2px -1px 3px #000000,
+            -2px  1px 3px #000000,
+            2px  1px 3px #000000,
+            -2px -2px 3px #000000,
+            2px -2px 3px #000000,
+            -2px  2px 3px #000000,
+            2px  2px 3px #000000,
+            -2px -2px 3px #000000,
+            2px -2px 3px #000000,
+            -2px  2px 3px #000000,
+            2px  2px 3px #000000;
+
+        @media (max-width: 400px) {
+            display: none;
+        }
+    }    
+}

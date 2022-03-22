@@ -1,0 +1,45 @@
+$card-size: 300px;
+$card-radius: 10px;
+$card-color: #f2f2f2;
+$card-shadow: 5px 5px 10px black;
+$btn-width: 100px;
+$btn-height: 30px;
+$btn-background: #fcd535;
+$btn-radius: 5px;
+
+.card {
+    width: $card-size;
+    height: $card-size;
+    border-radius: $card-radius;
+    box-shadow: $card-shadow;
+    background: $card-color;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+        font-size: 1.5rem;
+        text-decoration: underline;
+    }
+
+    &__price {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    &__del-btn {
+        width: $btn-width;
+        height: $btn-height;
+        border: 2px solid black;
+        border-radius: $btn-radius;
+        background: $btn-background;
+        cursor: pointer;
+
+        &:hover {
+            background: orange;
+        }
+    }
+}
+
