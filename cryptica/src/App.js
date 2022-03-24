@@ -1,15 +1,21 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTickerList } from './actions/tickerList'; 
 import './App.scss';
 import TickerInput from './components/TickerInput/TickerInput';
 import TickerList from './pages/TickerList/TickerList';
+import { socket, subscribeToTicker } from './api/wsApi'
 
 function App() {
   const dispatch = useDispatch();
 
+  const trackedTickers = useSelector(state => state.tickerList.trackedTickers);
+
   useEffect(() => {
     dispatch(getTickerList());
+    socket.onopen = () => trackedTickers.forEach(ticker => subscribeToTicker(ticker));
+    socket.onmessage = e => console.log(e.data);
+    setTimeout(() => socket.close(), 10000);
   }, [])
 
   return (
