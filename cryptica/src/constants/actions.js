@@ -1,0 +1,1 @@
+export const GET_TICKER_LIST = 'APP/GET_TICKER_LIST';

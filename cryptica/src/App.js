@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
-import { getCoinList } from './api/httpsApi';
+import { useDispatch } from 'react-redux';
+import { getTickerList } from './actions/tickerList'; 
 import './App.scss';
 import TickerInput from './components/TickerInput/TickerInput';
 import TickerList from './pages/TickerList/TickerList';
 
 function App() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getCoinList();
+    dispatch(getTickerList());
   }, [])
 
   return (
