@@ -16,6 +16,31 @@ $btn-background: #fcd535;
         @include radius;
     }
 
+    &__list {
+        display: none;
+        position: relative;
+
+        ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: $input-width;
+            list-style-type: none;
+            border: 2px solid black;
+            background: white;
+
+            li {
+                padding: 2px 5px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__list_visible {
+        display: block;
+    }
+
     &__add-btn {
         width: $btn-width;
         height: $btn-height;
