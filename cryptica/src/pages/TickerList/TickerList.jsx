@@ -1,25 +1,20 @@
 import React from "react";
 import TickerCard from "../../components/TickerCard/TickerCard";
 import './TickerList.scss';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTicker } from "../../actions/tickerList";
 
 const TickerList = () => {
-    const tickers = [
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-        {ticker: 'BTC', price: 42062.22},
-    ];
+    const tickers = useSelector(state => state.tickerList.trackedTickers);
+    const dispatch = useDispatch();
+
+    const handleDeleteButtonClick = (ticker) => {
+        dispatch(deleteTicker(ticker))
+    }
 
     return (
         <div className="ticker-list">
-            {tickers.map((item, index) => <TickerCard ticker={item.ticker} price={item.price} key={index} />)}
+            {tickers.map((ticker, index) => <TickerCard ticker={ticker.name} price={ticker.price} handler={() => handleDeleteButtonClick(ticker.name)} key={index} />)}
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTickerList } from './actions/tickerList'; 
+import { getTickerList, updateTicker } from './actions/tickerList'; 
 import './App.scss';
 import TickerInput from './components/TickerInput/TickerInput';
 import TickerList from './pages/TickerList/TickerList';
@@ -13,9 +13,13 @@ function App() {
 
   useEffect(() => {
     dispatch(getTickerList());
-    socket.onopen = () => trackedTickers.forEach(ticker => subscribeToTicker(ticker));
-    socket.onmessage = e => console.log(e.data);
-    setTimeout(() => socket.close(), 10000);
+    socket.onopen = () => trackedTickers.forEach(ticker => subscribeToTicker(ticker.name));
+    socket.onmessage = e => {
+      const data = JSON.parse(e.data);
+      if (data.TYPE === '5') {
+        dispatch(updateTicker({name: data.FROMSYMBOL, price: data.PRICE}));
+      }
+    }
   }, [])
 
   return (

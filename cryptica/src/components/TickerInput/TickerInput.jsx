@@ -9,6 +9,7 @@ const TickerInput = () => {
 
     const dispatch = useDispatch();
     const tickers = useSelector(state => state.tickerList.tickerList);
+    const trackedTickers = useSelector(state => state.tickerList.trackedTickers);
 
     const handleCahge = (text) => {
         if (text) {
@@ -26,8 +27,12 @@ const TickerInput = () => {
 
     const handleAddButtonClick = () => {
         if (text !== '') {
-            dispatch(addTicker(text));
-            setText('');
+            if (trackedTickers.some(ticker => ticker.name === text)) {
+                alert('Тикер уже отслеживается!')
+            } else {
+                dispatch(addTicker(text));
+                setText('');
+            }   
         }
     }
 
