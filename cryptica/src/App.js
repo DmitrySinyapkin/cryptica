@@ -17,7 +17,7 @@ function App() {
     socket.onopen = () => trackedTickers.forEach(ticker => subscribeToTicker(ticker.name));
     socket.onmessage = e => {
       const data = JSON.parse(e.data);
-      if (data.TYPE === '5') {
+      if (data.TYPE === '5' && data.PRICE) {
         dispatch(updateTicker({name: data.FROMSYMBOL, price: formatPrice(data.PRICE)}));
       }
     }

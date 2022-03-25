@@ -11,7 +11,8 @@ const TickerInput = () => {
     const tickers = useSelector(state => state.tickerList.tickerList);
     const trackedTickers = useSelector(state => state.tickerList.trackedTickers);
 
-    const handleCahge = (text) => {
+    const handleCahge = (e) => {
+        const text = e.target.value;
         if (text) {
             setText(text);
             setList(tickers.filter(ticker => ticker.toLowerCase().startsWith(text.toLowerCase())));
@@ -41,7 +42,7 @@ const TickerInput = () => {
 
         <div className="ticker-input">
             <div>
-                <input type="text" className="ticker-input__input" placeholder="Название монеты" value={text} onChange={e => handleCahge(e.target.value)} />
+                <input type="text" className="ticker-input__input" placeholder="Название монеты" value={text} onChange={handleCahge} />
             </div>
             <div className={`ticker-input__list ${list.length > 0 && 'ticker-input__list_visible'}`}>
                 <ul>
