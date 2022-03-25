@@ -5,6 +5,7 @@ import './App.scss';
 import TickerInput from './components/TickerInput/TickerInput';
 import TickerList from './pages/TickerList/TickerList';
 import { socket, subscribeToTicker } from './api/wsApi'
+import { formatPrice } from './utils/formatPrice';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function App() {
     socket.onmessage = e => {
       const data = JSON.parse(e.data);
       if (data.TYPE === '5') {
-        dispatch(updateTicker({name: data.FROMSYMBOL, price: data.PRICE}));
+        dispatch(updateTicker({name: data.FROMSYMBOL, price: formatPrice(data.PRICE)}));
       }
     }
   }, [])
