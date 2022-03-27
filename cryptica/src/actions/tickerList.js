@@ -1,6 +1,7 @@
 import { getCoinList } from "../api/httpsApi";
 import { subscribeToTicker, unsubscribeFromTicker } from "../api/wsApi";
 import { ADD_TICKER, DELETE_TICKER, GET_TICKER_LIST, UPDATE_TICKER } from "../constants/actions";
+import { makeCoinList } from "../utils/makeCoinList";
 
 const getTickerListAction = (tickerList) => ({
     type: GET_TICKER_LIST,
@@ -23,7 +24,8 @@ const updateTickerAction = (ticker) => ({
 })
 
 export const getTickerList = () => (dispatch) => {
-    getCoinList().then(response => dispatch(getTickerListAction(Object.keys(response.Data))))
+    //getCoinList().then(response => dispatch(getTickerListAction(Object.keys(response.Data))))
+    getCoinList().then(response => dispatch(getTickerListAction(makeCoinList(response))))
 }
 
 export const addTicker = (ticker) => (dispatch) => {
